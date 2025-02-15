@@ -14,28 +14,28 @@ Parameters:
   KeyName:
     Description: Name of an existing EC2 KeyPair to enable SSH access
     Type: AWS::EC2::KeyPair::KeyName
-    Default: MainLinuxKpair # 🔥 Ensure this exists in EC2
+    Default: MainLinuxKpair # Ensure this exists in EC2
   ImageId:
     Description: AMI ID for the EC2 instances
     Type: String
-    Default: ami-0700605141c2d80e6 # 🔥 Update this for your region
+    Default: ami-0700605141c2d80e6 # Update this for your region
   VpcId:
     Description: The VPC where the instances will be launched
     Type: String
-    Default: vpc-050465ef3ba279474 # 🔥 Ensure this exists
+    Default: vpc-050465ef3ba279474 # Ensure this exists
   SubnetId:
     Description: The subnet where the instances will be launched
     Type: String
-    Default: subnet-00bfb2633b721a7cf # 🔥 Ensure this exists
+    Default: subnet-00bfb2633b721a7cf #  Ensure this exists
 
 Resources:
   EC2Instance1:
     Type: AWS::EC2::Instance
     Properties:
-      InstanceType: !Ref InstanceType # ✅ Fixed reference
-      KeyName: !Ref KeyName # ✅ Fixed reference
-      ImageId: !Ref ImageId # ✅ Fixed reference
-      SubnetId: !Ref SubnetId # ✅ Fixed reference
+      InstanceType: !Ref InstanceType # Fixed reference
+      KeyName: !Ref KeyName # Fixed reference
+      ImageId: !Ref ImageId # Fixed reference
+      SubnetId: !Ref SubnetId # Fixed reference
       Tags:
         - Key: Name
           Value: Server1
@@ -43,10 +43,10 @@ Resources:
   EC2Instance2:
     Type: AWS::EC2::Instance
     Properties:
-      InstanceType: !Ref InstanceType # ✅ Fixed reference
-      KeyName: !Ref KeyName # ✅ Fixed reference
-      ImageId: !Ref ImageId # ✅ Fixed reference
-      SubnetId: !Ref SubnetId # ✅ Fixed reference
+      InstanceType: !Ref InstanceType # Fixed reference
+      KeyName: !Ref KeyName #  Fixed reference
+      ImageId: !Ref ImageId # Fixed reference
+      SubnetId: !Ref SubnetId # Fixed reference
       Tags:
         - Key: Name
           Value: Server2
