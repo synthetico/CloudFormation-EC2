@@ -1,0 +1,60 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudFormation template to launch two EC2 instances in a specified region.
+
+Parameters:
+  InstanceType:
+    Description: EC2 instance type
+    Type: String
+    Default: t2.micro
+    AllowedValues:
+      #include all the intance type you will like to launch
+      - t2.micro
+      - t3.micro
+      - t3.small
+  KeyName:
+    Description: Name of an existing EC2 KeyPair to enable SSH access
+    Type: AWS::EC2::KeyPair::KeyName
+    Default: MainLinuxKpair # 🔥 Ensure this exists in EC2
+  ImageId:
+    Description: AMI ID for the EC2 instances
+    Type: String
+    Default: ami-0700605141c2d80e6 # 🔥 Update this for your region
+  VpcId:
+    Description: The VPC where the instances will be launched
+    Type: String
+    Default: vpc-050465ef3ba279474 # 🔥 Ensure this exists
+  SubnetId:
+    Description: The subnet where the instances will be launched
+    Type: String
+    Default: subnet-00bfb2633b721a7cf # 🔥 Ensure this exists
+
+Resources:
+  EC2Instance1:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !Ref InstanceType # ✅ Fixed reference
+      KeyName: !Ref KeyName # ✅ Fixed reference
+      ImageId: !Ref ImageId # ✅ Fixed reference
+      SubnetId: !Ref SubnetId # ✅ Fixed reference
+      Tags:
+        - Key: Name
+          Value: Server1
+
+  EC2Instance2:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !Ref InstanceType # ✅ Fixed reference
+      KeyName: !Ref KeyName # ✅ Fixed reference
+      ImageId: !Ref ImageId # ✅ Fixed reference
+      SubnetId: !Ref SubnetId # ✅ Fixed reference
+      Tags:
+        - Key: Name
+          Value: Server2
+
+Outputs:
+  Instance1Id:
+    Description: Instance ID of the first EC2 instance
+    Value: !Ref Server1
+  Instance2Id:
+    Description: Instance ID of the second EC2 instance
+    Value: !Ref Server2
